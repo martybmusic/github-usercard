@@ -5,7 +5,17 @@
 */
 import axios from 'axios';
 
-axios.get("https://api.github.com/users/martybmusic");
+axios.get("https://api.github.com/users/martybmusic")
+.then((result => {
+  let thisCard = result.data
+  content.appendChild(gitCardMaker(thisCard));
+})
+.catch(error => {
+  console.log(error);
+})
+.finally(yay => {
+  console.log(yay);
+})
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
     github info! You will need to understand the structure of this
