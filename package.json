@@ -1,6 +1,7 @@
 {
   "name": "github-usercard",
   "version": "1.0.0",
+  "type": "module",
   "scripts": {
     "start": "parcel index.html"
   },
@@ -16,6 +17,7 @@
   },
   "homepage": "https://github.com/LambdaSchool/github-usercard#readme",
   "devDependencies": {
+    "babel-eslint": "^10.1.0",
     "eslint": "^7.3.0",
     "parcel-bundler": "^1.12.4"
   },

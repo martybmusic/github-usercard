@@ -3,13 +3,17 @@
     (replacing the placeholder with your Github name):
     https://api.github.com/users/<your name>
 */
-import axios from 'axios';
+// import axios from 'axios'
+
+const { default: axios } = require("axios");
+
+const content = document.querySelector('.cards')
 
 axios.get("https://api.github.com/users/martybmusic")
 .then((result => {
-  let thisCard = result.data
-  content.appendChild(gitCardMaker(thisCard));
-})
+  let martyCard = result.data
+  content.appendChild(gitCardMaker(martyCard))
+}))
 .catch(error => {
   console.log(error);
 })
@@ -40,7 +44,19 @@ axios.get("https://api.github.com/users/martybmusic")
     user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = [
+  'tetondan',
+  'dustinmyers',
+  'justsml',
+  'luishrd',
+  'bigknell'
+];
+
+followersArray.forEach(user => {
+  axios
+  .get(`https://api.github.com/users/${user}`)
+  .then(result => document.querySelector('.cards').appendChild(gitCardMaker(result.data)))  
+})
 
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
@@ -82,13 +98,6 @@ function gitCardMaker (data) {
   location = data.location;
   link.href = data.html_url;
 
-  name.textContent = data.name;
-  userName.textContent = data.login;
-  location.textContent = 'location: ' + data.location;
-  followers.textContent = 'followers: ' + data.followers;
-  following.textContent = 'following: ' + data.following;
-  bio.textContent = 'bio: ' + data.bio;
-
   card.appendChild(img);
   card.appendChild(cardInfo);
   cardInfo.appendChild(name);
@@ -99,6 +108,13 @@ function gitCardMaker (data) {
   cardInfo.appendChild(following);
   cardInfo.appendChild(bio);
   profile.appendChild(link);
+
+  name.textContent = data.name;
+  userName.textContent = data.login;
+  location.textContent = 'location: ' + data.location;
+  followers.textContent = 'followers: ' + data.followers;
+  following.textContent = 'following: ' + data.following;
+  bio.textContent = 'bio: ' + data.bio;
 
   return card
 
