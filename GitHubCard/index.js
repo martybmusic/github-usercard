@@ -63,7 +63,22 @@ function gitCardMaker (data) {
   const followers = document.createElement('p');
   const following = document.createElement('p');
   const bio = document.createElement('p');
-  
+
+  card.classList.add('card');
+  img.src = data.avatar_url;
+  cardInfo.classList.add('card-info');
+  name.classList.add('name');
+  userName.classList.add('username');
+  location = data.location;
+  link.href = data.html_url;
+
+  name.textContent = data.name;
+  userName.textContent = data.login;
+  location.textContent = 'location: ' + data.location;
+  followers.textContent = 'followers: ' + data.followers;
+  following.textContent = 'following: ' + data.following;
+  bio.textContent = 'bio: ' + data.bio;
+
 }
 /*
   List of LS Instructors Github username's:
