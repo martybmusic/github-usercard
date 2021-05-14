@@ -1,4 +1,5 @@
 module.exports = {
+    "parser": "babel-eslint"
     "env": {
         "browser": true,
         "es2020": true
@@ -11,3 +12,4 @@ module.exports = {
     "rules": {
     }
 };
+
